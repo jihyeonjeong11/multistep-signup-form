@@ -13,6 +13,7 @@
 - Form management: [React Hook Form](https://react-hook-form.com/)
 - Form validation: [Zod](https://zod.dev/)
 - Web animation: [Motion](https://www.framer.com/motion/)
+- Date picker: [react-day-picker](https://daypicker.dev/)
 
 ## installation
 

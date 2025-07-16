@@ -5,26 +5,9 @@ import { Input } from "./components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 import { Button } from "./components/ui/button";
 import Showcase from "./_sandbox/Showcase";
+import { formVariants } from "./lib/utils";
 
 // 랜딩 페이지
-
-const formVariants = {
-  hidden: {
-    opacity: 0,
-    x: -50,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-  },
-  exit: {
-    opacity: 0,
-    x: 50,
-    transition: {
-      ease: "easeOut",
-    },
-  },
-};
 
 function AnimatedDiv({
   className,
@@ -73,7 +56,7 @@ const SecondForm = () => (
   </AnimatedDiv>
 );
 
-// SNS 소설 계정 연결 항목 // dunno. buttons?
+// SNS 소설 계정 연결 항목 // dunno. buttons? // 버튼 + 로딩
 const ThirdForm = () => (
   <AnimatedDiv className="w-full h-full p-4">소셜 연결</AnimatedDiv>
 );
