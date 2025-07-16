@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Input } from "./components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 import { Button } from "./components/ui/button";
-import Showcase from "./_testpurpose/Showcase";
+import Showcase from "./_sandbox/Showcase";
 
 // 랜딩 페이지
 
