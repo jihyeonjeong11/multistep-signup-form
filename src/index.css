@@ -4,6 +4,19 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 
+@font-face {
+  font-family: "noto-sans";
+  src: url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap");
+}
+
+@theme {
+  --color-background-primary: #f8f8f5;
+  --color-background-secondary: #ffffff;
+  --color-text-primary: #1e1e1e;
+  --color-accent-green: #428c80;
+  --font-noto-sans: "noto-sans";
+}
+
 #root {
   width: 100vw;
   margin: 0 auto;

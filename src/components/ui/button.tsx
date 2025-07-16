@@ -1,14 +1,16 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../utils/utils";
+import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium hover:bg-orange-active",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium p-2 cursor-pointer",
   {
     variants: {
       variant: {
         default: "",
+        primary: "bg-accent-green text-white hover:bg-accent-green/90",
+        secondary: "hover:text-accent-green",
         // destructive:
         //   "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         // outline:
