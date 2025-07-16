@@ -2,6 +2,10 @@
 
 리액트 회원가입 폼
 
+## issues
+
+- Vite ts 절대경로 안됨.
+
 ## Dependencies
 
 - Styling: [Tailwind CSS](https://tailwindcss.com/)

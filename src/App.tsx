@@ -1,7 +1,10 @@
 import { useState } from "react";
 
-import "./App.css";
 import { AnimatePresence, motion } from "framer-motion";
+import { Input } from "./components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
+import { Button } from "./components/ui/button";
+import Showcase from "./_testpurpose/Showcase";
 
 // 랜딩 페이지
 
@@ -43,16 +46,36 @@ function AnimatedDiv({
   );
 }
 
+//  아이디, 비밀번호, 이메일, 전화번호 - input, input with email helper
 const FirstForm = () => (
-  <AnimatedDiv className="w-[300px] h-[300px] bg-red-200">form1</AnimatedDiv>
+  <AnimatedDiv className="w-full h-full p-4">
+    id
+    <Input />
+    password
+    <Input />
+    password confirm
+    <Input />
+    email
+    <Input />
+    mobile
+    <Input />
+  </AnimatedDiv>
 );
 
+// 생년월일, 성별, 나머지 구성은 자유 // ios style date picker, radio
 const SecondForm = () => (
-  <AnimatedDiv className="w-[300px] h-[300px] bg-green-200">form2</AnimatedDiv>
+  <AnimatedDiv className="w-full h-full p-4">
+    생년월일 성별 자유
+    <RadioGroup>
+      <RadioGroupItem value={"male"}>남성</RadioGroupItem>
+      <RadioGroupItem value={"male"}>여성</RadioGroupItem>
+    </RadioGroup>
+  </AnimatedDiv>
 );
 
+// SNS 소설 계정 연결 항목 // dunno. buttons?
 const ThirdForm = () => (
-  <AnimatedDiv className="w-[300px] h-[300px] bg-blue-200">form3</AnimatedDiv>
+  <AnimatedDiv className="w-full h-full p-4">소셜 연결</AnimatedDiv>
 );
 
 function App() {
@@ -69,34 +92,39 @@ function App() {
       setStep((prev) => prev - 1);
     }
   };
+
+  return <Showcase />;
+
   return (
-    <div>
-      <div className="mb-4 overflow-hidden">
-        <div className="w-[500px] h-[500px] border flex">
-          <div className="bg-cyan-400 flex flex-col justify-evenly px-2">
-            {[1, 2, 3, 4].map((e, i) => {
-              return (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setStep(i);
-                  }}
-                  key={"control" + i}
-                >
-                  step {e}
-                </button>
-              );
-            })}
-          </div>
-          <div className="flex grow bg-amber-200 justify-center items-center">
-            <AnimatePresence custom={1} mode="wait">
-              {step === 0 && <FirstForm key={"1"} />}
-              {step === 1 && <SecondForm key={"2"} />}
-              {step === 2 && <ThirdForm key={"3"} />}
-            </AnimatePresence>
-          </div>
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="w-[500px] h-[500px] bg-white flex rounded-md">
+        <div className=" flex flex-col justify-evenly px-2 border-r-amber-300 border-r-2">
+          {["계정 정보", "개인 정보", "소셜 연결"].map((e, i) => {
+            return (
+              <Button
+                type="button"
+                onClick={() => {
+                  setStep(i);
+                }}
+                key={"control" + i}
+              >
+                <div>
+                  <p>Step {i}</p>
+                  <span>{e}</span>
+                </div>
+              </Button>
+            );
+          })}
+        </div>
+        <div className="flex grow justify-center items-center">
+          <AnimatePresence custom={1} mode="wait">
+            {step === 0 && <FirstForm key={"1"} />}
+            {step === 1 && <SecondForm key={"2"} />}
+            {step === 2 && <ThirdForm key={"3"} />}
+          </AnimatePresence>
         </div>
       </div>
+
       <button onClick={goBack}>go Back</button>
       <button onClick={goNext}>go Next</button>
     </div>
