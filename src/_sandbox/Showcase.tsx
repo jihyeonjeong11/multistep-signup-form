@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 // 미니멀한 스토리북 컴포넌트 쇼케케이스
-function Showcase() {
+function Showcase({ devSwitcher }: { devSwitcher: () => void }) {
   return (
     <div className="w-full min-h-screen bg-background-primary p-4 font-noto-sans flex flex-col gap-16">
       <section className="p-2">
@@ -36,6 +36,15 @@ function Showcase() {
           />
         </div>
       </section>
+      {process.env.NODE_ENV === "development" && (
+        <Button
+          onClick={devSwitcher}
+          variant="primary"
+          className="fixed right-4 top-4"
+        >
+          Dev:Go back to app
+        </Button>
+      )}
     </div>
   );
 }

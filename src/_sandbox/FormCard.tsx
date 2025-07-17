@@ -11,7 +11,7 @@ import Step1Sandbox from "./Step1Form";
 function FormCard() {
   return (
     <CardContainer>
-      <CardSidebar />
+      <CardSidebar goToIndex={() => null} />
       <Card>
         <CardHeader>
           <CardTitle>개인 정보</CardTitle>

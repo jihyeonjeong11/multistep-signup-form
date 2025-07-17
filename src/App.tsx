@@ -4,8 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Input } from "./components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 import { Button } from "./components/ui/button";
-import Showcase from "./_sandbox/Showcase";
 import { formVariants } from "./lib/utils";
+import Showcase from "./_sandbox/Showcase";
+import Signup from "./components/Signup";
 
 // 랜딩 페이지
 
@@ -63,6 +64,7 @@ const ThirdForm = () => (
 
 function App() {
   const [step, setStep] = useState(0);
+  const [showDevShowcase, setShowDebShowcase] = useState(false);
 
   const goNext = () => {
     if (step < 2) {
@@ -76,40 +78,58 @@ function App() {
     }
   };
 
-  return <Showcase />;
+  const devSwitcher = () => {
+    setShowDebShowcase((p) => !p);
+  };
+
+  if (showDevShowcase) {
+    return <Showcase devSwitcher={devSwitcher} />;
+  }
 
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-      <div className="w-[500px] h-[500px] bg-white flex rounded-md">
-        <div className=" flex flex-col justify-evenly px-2 border-r-amber-300 border-r-2">
-          {["계정 정보", "개인 정보", "소셜 연결"].map((e, i) => {
-            return (
-              <Button
-                type="button"
-                onClick={() => {
-                  setStep(i);
-                }}
-                key={"control" + i}
-              >
-                <div>
-                  <p>Step {i}</p>
-                  <span>{e}</span>
-                </div>
-              </Button>
-            );
-          })}
+    <div className="w-full min-h-screen">
+      {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className=" bg-white flex rounded-md">
+          <div className=" flex flex-col justify-evenly px-2 border-r-amber-300 border-r-2">
+            {["계정 정보", "개인 정보", "소셜 연결"].map((e, i) => {
+              return (
+                <Button
+                  type="button"
+                  onClick={() => {
+                    setStep(i);
+                  }}
+                  key={"control" + i}
+                >
+                  <div>
+                    <p>Step {i}</p>
+                    <span>{e}</span>
+                  </div>
+                </Button>
+              );
+            })}
+          </div>
+          <div className="flex grow justify-center items-center">
+            <AnimatePresence custom={1} mode="wait">
+              {step === 0 && <FirstForm key={"1"} />}
+              {step === 1 && <SecondForm key={"2"} />}
+              {step === 2 && <ThirdForm key={"3"} />}
+            </AnimatePresence>
+          </div>
         </div>
-        <div className="flex grow justify-center items-center">
-          <AnimatePresence custom={1} mode="wait">
-            {step === 0 && <FirstForm key={"1"} />}
-            {step === 1 && <SecondForm key={"2"} />}
-            {step === 2 && <ThirdForm key={"3"} />}
-          </AnimatePresence>
-        </div>
-      </div>
 
-      <button onClick={goBack}>go Back</button>
-      <button onClick={goNext}>go Next</button>
+        <button onClick={goBack}>go Back</button>
+        <button onClick={goNext}>go Next</button>
+      </div> */}
+      <Signup />
+      {process.env.NODE_ENV === "development" && (
+        <Button
+          onClick={devSwitcher}
+          variant="primary"
+          className="fixed right-4 top-4"
+        >
+          Dev:Check showcases
+        </Button>
+      )}
     </div>
   );
 }

@@ -19,6 +19,7 @@
   --color-accent-green: #428c80;
   --font-noto-sans: "noto-sans";
   --color-destructive: hsl(0 84.2% 60.2%);
+  --spacing-card-height: 500px;
 }
 
 #root {

@@ -11,8 +11,8 @@ const CardContainer = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "w-11/12",
-      "md:flex rounded-lg md:border md:border-accent-green ",
+      "w-11/12 min-h-card-height",
+      "md:flex md:border md:border-accent-green ",
       className
     )}
     {...props}
@@ -27,7 +27,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "bg-card shadow-sm w-full h-full",
+      "bg-card w-full h-full",
       "md:border-none border border-accent-green",
       className
     )}
