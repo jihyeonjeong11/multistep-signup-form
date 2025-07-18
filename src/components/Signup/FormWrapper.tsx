@@ -1,4 +1,3 @@
-import Step1Sandbox from "@/_sandbox/Step1Form";
 import { Button } from "../ui/button";
 import FirstForm from "./forms/firstForm";
 import SecondForm from "./forms/secondForm";
@@ -8,13 +7,13 @@ import { AnimatePresence } from "framer-motion";
 function FormWrapper({ step }: { step: number }) {
   return (
     <AnimatePresence mode="wait">
-      <div className="grow p-2">
-        {step === 0 && <Step1Sandbox />}
+      <div className="grow p-2 h-full">
+        {step === 0 && <FirstForm />}
         {step === 1 && <SecondForm />}
         {step === 2 && <ThirdForm />}
         {step === 3 && <>completed</>}
         {step !== 3 && (
-          <div className="flex justify-between">
+          <div className="flex justify-between items-end">
             <Button type="submit" className="mt-4" variant="secondary">
               <span>뒤로가기</span>
             </Button>

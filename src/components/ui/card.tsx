@@ -1,9 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-// 왼쪽: 단계
-// 오른쪽: 폼 내용
-
 const CardContainer = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -11,8 +8,8 @@ const CardContainer = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "w-11/12 min-h-card-height",
-      "md:flex md:border md:border-accent-green ",
+      "w-11/12 min-h-card-height max-w-4xl",
+      "md:flex md:border md:border-accent-green rounded-md",
       className
     )}
     {...props}

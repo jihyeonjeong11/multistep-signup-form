@@ -79,6 +79,24 @@ export const SIGN_UP_FIELDS = {
   },
 };
 
+export const INITIAL_FORM_DATA = {
+  // Step 1
+  id: "",
+  password: "",
+  passwordConfirm: "",
+  email: "",
+  phoneNumber: "",
+
+  // Step 2
+  birthdate: "",
+  gender: "",
+  additionalInfo: "",
+
+  // Step 3
+  snsType: "",
+  snsId: "",
+};
+
 export const step1Schema = z
   .object({
     id: z
@@ -136,22 +154,11 @@ export const step2Schema = z.object({
         date <= new Date()
       );
     }, "유효하지 않거나 미래의 생년월일입니다."),
-  gender: z.enum(["male", "female", "other"], {
+  gender: z.enum(["m", "f", ""], {
     message: "성별을 선택해주세요.",
   }),
 
-  interests: z
-    .array(
-      z.enum(["it", "design", "marketing", "etc"], {
-        message: "유효한 관심사를 선택해주세요.",
-      })
-    )
-    .optional(),
-  occupation: z
-    .enum(["", "student", "employee", "freelancer", "etc"], {
-      message: "직업을 선택해주세요.",
-    })
-    .optional(),
+  // 자유 value
 });
 
 export type Step2FormData = z.infer<typeof step2Schema>;

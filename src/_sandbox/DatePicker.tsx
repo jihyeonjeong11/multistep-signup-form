@@ -14,9 +14,11 @@ interface DatePickerWithCalendarProps {
 
 const DatePickerWithCalendar: React.FC<DatePickerWithCalendarProps> = ({
   selected,
+  value,
   onSelect,
   placeholder = "날짜를 선택하세요",
 }) => {
+  console.log("selected", value);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const popoverRef = React.useRef<HTMLDivElement>(null);
@@ -54,7 +56,7 @@ const DatePickerWithCalendar: React.FC<DatePickerWithCalendarProps> = ({
         aria-haspopup="dialog"
       >
         {selected ? (
-          format(selected, "PPP", { locale: ko })
+          format(value, "PPP", { locale: ko })
         ) : (
           <span>{placeholder}</span>
         )}

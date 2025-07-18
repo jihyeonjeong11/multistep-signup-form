@@ -1,9 +1,7 @@
-import { useState } from "react";
 import {
   Card,
   CardContainer,
   CardDescription,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import CardSidebar from "@/components/ui/CardSidebar";
@@ -11,43 +9,57 @@ import FirstForm from "./forms/firstForm";
 import SecondForm from "./forms/secondForm";
 import ThirdForm from "./forms/thirdForm";
 import { AnimatePresence } from "framer-motion";
-import FormWrapper from "./FormWrapper";
+import MotionDiv from "./MotionDiv";
+import useSteps from "@/hooks/useSteps";
+import { Button } from "../ui/button";
 
 function Signup() {
-  const [step, setStep] = useState(0);
+  const { currentStep, goNext, goBack, goToIndex } = useSteps(4);
 
-  const goToIndex = (i: number, completed: boolean) => {
-    if (completed) setStep(i);
-  };
-  const goNext = () => {
-    if (step < 2) {
-      setStep((prev) => prev + 1);
-    }
-  };
-
-  const goBack = () => {
-    if (step > 0) {
-      setStep((prev) => prev - 1);
-    }
-  };
+  // 폼 관리 블록
 
   return (
     <article className="flex items-center justify-center h-screen">
       <CardContainer>
         <CardSidebar goToIndex={goToIndex} />
-        <FormWrapper step={step} />
+        <Card>
+          <AnimatePresence mode="wait">
+            {currentStep === 0 && (
+              <MotionDiv key={currentStep} className="py-4">
+                <CardTitle>제목</CardTitle>
+                <CardDescription>안녕하세여ㅛ</CardDescription>
+                <FirstForm />
+              </MotionDiv>
+            )}
+            {currentStep === 1 && (
+              <MotionDiv key={currentStep} className="py-4">
+                <CardTitle>제목2</CardTitle>
+                <CardDescription>안녕하세여2</CardDescription>
+                <SecondForm />
+              </MotionDiv>
+            )}
+            {currentStep === 2 && (
+              <MotionDiv key={currentStep} className="py-4">
+                <CardTitle>제목3</CardTitle>
+                <CardDescription>안녕하세여3</CardDescription>
+                <ThirdForm />
+              </MotionDiv>
+            )}
+            {currentStep === 3 && (
+              <MotionDiv key={currentStep} className="py-4">
+                <CardTitle>성공</CardTitle>
+                <CardDescription>성공했습니다</CardDescription>
+              </MotionDiv>
+            )}
+          </AnimatePresence>
+          <div>
+            <Button onClick={goBack}>뒤로가기</Button>
+            <Button onClick={goNext}>다음으로 가기</Button>
+          </div>
+        </Card>
       </CardContainer>
     </article>
   );
 }
 
 export default Signup;
-
-// <Card>
-
-//   <CardHeader>
-//     <CardTitle>개인 정보</CardTitle>
-//     <CardDescription>개인 정보를 입력해 주세요.</CardDescription>
-//   </CardHeader>
-//   <div className="p-4">{/* <Step1Sandbox /> */}</div>
-// </Card>

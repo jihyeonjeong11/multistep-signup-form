@@ -1,7 +1,5 @@
-import MotionDiv from "../MotionDiv";
-
 function ThirdForm() {
-  return <MotionDiv>third</MotionDiv>;
+  return <>소셜 계정과 연동해 보세요</>;
 }
 
 export default ThirdForm;
