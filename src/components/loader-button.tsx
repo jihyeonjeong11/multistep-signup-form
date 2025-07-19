@@ -11,7 +11,6 @@ export function LoaderButton({
   return (
     <Button
       disabled={isLoading}
-      type="submit"
       {...props}
       className={cn("flex gap-2 justify-center px-3", className)}
     >

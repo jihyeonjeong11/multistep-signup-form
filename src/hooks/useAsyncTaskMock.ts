@@ -1,13 +1,12 @@
+import type { SocialConnectionStatus } from "@/types/types";
 import { useCallback, useState } from "react";
 
-type SocialConnectionStatus = "idle" | "success" | "failure";
-
-function useSocialConnectionMock() {
+function useAsyncTaskMock() {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<SocialConnectionStatus>("idle");
   const [error, setError] = useState<string | null>(null);
 
-  const socialMock = useCallback(
+  const mock = useCallback(
     async (onSuccess: () => void, onError: () => void) => {
       setIsLoading(true);
       setStatus("idle");
@@ -38,7 +37,7 @@ function useSocialConnectionMock() {
     []
   );
 
-  return { socialMock, isLoading, status, error };
+  return { mock, isLoading, status, error };
 }
 
-export default useSocialConnectionMock;
+export default useAsyncTaskMock;

@@ -4,9 +4,7 @@ import {
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
-import FirstForm from "./forms/firstForm";
-import SecondForm from "./forms/secondForm";
-import ThirdForm from "./forms/thirdForm";
+
 import { AnimatePresence } from "framer-motion";
 import MotionDiv from "./MotionDiv";
 import useSteps from "@/hooks/useSteps";
@@ -17,15 +15,25 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type z from "zod/v3";
 import { Form } from "../ui/form";
 import CardSidebar from "../ui/CardSidebar";
+import useAsyncTaskMock from "@/hooks/useAsyncTaskMock";
+import { LoaderButton } from "../loader-button";
+import AccountForm from "./forms/accountForm";
+import PrivateForm from "./forms/PrivateForm";
+import SocialForm from "./forms/SocialForm";
 
-const SIGNUP_FIELDS_BY_STEP = [
-  ["id", "email", "password", "passwordConfirm", "phoneNumber"],
-  ["birthDate", "gender"],
-  [],
-];
+const step1Conditions = [
+  "id",
+  "email",
+  "password",
+  "passwordConfirm",
+  "phoneNumber",
+] as const;
+
+const step2Conditions = ["gender", "birthDate"] as const;
 
 function Signup() {
   const { currentStep, goNext, goBack, goToIndex } = useSteps(4);
+  const { isLoading, mock } = useAsyncTaskMock();
 
   const form = useForm<z.infer<typeof signupSchema>>({
     defaultValues: INITIAL_FORM_DATA,
@@ -40,37 +48,35 @@ function Signup() {
   } = form;
 
   function onSubmit(values: z.infer<typeof signupSchema>) {
-    console.log(values, "onsubmit");
-    // todo: 비동기
-    // 로딩 이후 step === 4
-    // 성공 카드
-    // todo: 유일한 성공 진입로.
-    goToIndex(3, true);
+    mock(
+      () => {
+        console.log("passing values", values);
+        goNext();
+      },
+      () => null // 토스터
+    );
   }
 
   const handleNextStep = async () => {
     let isValid = true;
 
     if (currentStep === 0) {
-      isValid = await trigger([
-        "id",
-        "email",
-        "password",
-        "passwordConfirm",
-        "phoneNumber",
-      ]);
+      isValid = await trigger(step1Conditions);
       if (isValid) {
         goNext();
       } else {
         console.error(errors);
       }
     } else if (currentStep === 1) {
-      isValid = await trigger(["gender", "birthDate"]);
+      isValid = await trigger([...step1Conditions, ...step2Conditions]);
       if (isValid) {
         goNext();
       } else {
         console.error(errors);
       }
+    } else if (currentStep === 2) {
+      console.log("123123");
+      handleSubmit(onSubmit)();
     }
   };
 
@@ -78,11 +84,7 @@ function Signup() {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={handleSubmit((data) => {
-          onSubmit(data);
-        })}
-      >
+      <form onSubmit={(e) => e.preventDefault()}>
         <div className="flex items-center justify-center h-screen">
           <CardContainer className="items-stretch">
             <CardSidebar goToIndex={goToIndex} currentStep={currentStep} />
@@ -94,7 +96,7 @@ function Signup() {
                     <CardDescription className="py-2">
                       계정 필수 정보를 입력하세요
                     </CardDescription>
-                    <FirstForm form={form} />
+                    <AccountForm form={form} />
                   </MotionDiv>
                 )}
                 {currentStep === 1 && (
@@ -103,7 +105,7 @@ function Signup() {
                     <CardDescription className="py-2">
                       개인 정보를 입력하세요
                     </CardDescription>
-                    <SecondForm form={form} />
+                    <PrivateForm form={form} />
                   </MotionDiv>
                 )}
                 {currentStep === 2 && (
@@ -112,7 +114,7 @@ function Signup() {
                     <CardDescription className="py-2">
                       소셜 연동 여부를 확인해주세요
                     </CardDescription>
-                    <ThirdForm form={form} />
+                    <SocialForm form={form} />
                   </MotionDiv>
                 )}
                 {currentStep === 3 && (
@@ -124,21 +126,20 @@ function Signup() {
               </AnimatePresence>
               {currentStep !== 3 && (
                 <div className="flex justify-between">
-                  <Button onClick={goBack}>뒤로가기</Button>
+                  {currentStep > 0 && (
+                    <Button onClick={goBack}>뒤로가기</Button>
+                  )}
                   {currentStep === 2 ? (
-                    <Button
+                    <LoaderButton
                       disabled={!isValid}
-                      type="submit"
-                      variant={"primary"}
-                    >
-                      등록하기
-                    </Button>
-                  ) : (
-                    <Button
-                      variant={"primary"}
-                      type={"button"}
+                      isLoading={isLoading}
+                      variant="primary"
                       onClick={handleNextStep}
                     >
+                      등록하기
+                    </LoaderButton>
+                  ) : (
+                    <Button variant="primary" onClick={handleNextStep}>
                       다음으로 가기
                     </Button>
                   )}

@@ -1,86 +1,5 @@
 import z from "zod/v3";
 
-export const SIGN_UP_FIELDS = {
-  "0": {
-    name: "계정 정보",
-    id: {
-      name: "id",
-      label: "아이디",
-      placeholder: "아이디를 입력해주세요",
-    },
-    password: {
-      name: "password",
-      label: "비밀번호",
-      placeholder: "비밀번호를 입력해주세요",
-    },
-    passwordConfirm: {
-      name: "passwordConfirm",
-      label: "비밀번호 확인",
-      placeholder: "비밀번호를 다시 입력해주세요",
-    },
-    email: {
-      name: "email",
-      label: "이메일",
-      placeholder: "이메일 주소를 입력해주세요",
-    },
-    phoneNumber: {
-      name: "phoneNumber",
-      label: "전화번호",
-      placeholder: "전화번호를 입력해주세요 (예: 010-1234-5678)",
-    },
-  },
-  "1": {
-    name: "개인 정보",
-    birthDate: {
-      name: "birthDate",
-      label: "생년월일",
-      placeholder: "생년월일을 입력해주세요 (YYYY-MM-DD)",
-    },
-    gender: {
-      name: "gender",
-      label: "성별",
-      options: [
-        { value: "male", label: "남성" },
-        { value: "female", label: "여성" },
-        { value: "other", label: "선택 안 함" },
-      ],
-    },
-    interests: {
-      name: "interests",
-      label: "관심사",
-      options: [
-        { value: "it", label: "IT/개발" },
-        { value: "design", label: "디자인" },
-        { value: "marketing", label: "마케팅" },
-        { value: "etc", label: "기타" },
-      ],
-    },
-    occupation: {
-      name: "occupation",
-      label: "직업",
-      options: [
-        { value: "", label: "선택해주세요" },
-        { value: "student", label: "학생" },
-        { value: "employee", label: "직장인" },
-        { value: "freelancer", label: "프리랜서" },
-        { value: "etc", label: "기타" },
-      ],
-    },
-  },
-  "2": {
-    name: "소셜 연결",
-    socialConnect: {
-      name: "socialConnect",
-      label: "소셜 계정 연결",
-    },
-  },
-  "3": {
-    name: "등록 완료",
-  },
-};
-
-export const genderEnum = z.enum(["m", "f", ""]);
-
 export const INITIAL_FORM_DATA = {
   // Step 1
   id: "",
@@ -92,14 +11,11 @@ export const INITIAL_FORM_DATA = {
   // Step 2
   birthDate: undefined,
   gender: "",
-  additionalInfo: "",
 
   // Step 3
   isKakaoConnected: false,
   isNaverConnected: false,
   isGoogleConnected: false,
-  // snsType: "",
-  // snsId: "",
 };
 
 export const signupSchema = z

@@ -36,7 +36,6 @@ const DatePickerWithCalendar: React.FC<DatePickerWithCalendarProps> = ({
   }, []);
 
   const handleDaySelect = (date: Date | undefined) => {
-    console.log(date, typeof date);
     onSelect(date);
     setIsOpen(false);
   };

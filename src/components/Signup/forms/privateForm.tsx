@@ -12,7 +12,7 @@ import type { UseFormReturn } from "react-hook-form";
 import type z from "zod/v3";
 import type { signupSchema } from "../constants";
 
-function SecondForm({
+function PrivateForm({
   form,
 }: {
   form: UseFormReturn<z.infer<typeof signupSchema>>;
@@ -72,4 +72,4 @@ function SecondForm({
   );
 }
 
-export default SecondForm;
+export default PrivateForm;

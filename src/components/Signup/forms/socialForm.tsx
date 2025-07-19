@@ -2,20 +2,20 @@ import { FormControl, FormField, FormItem } from "@/components/ui/form";
 import type { UseFormReturn } from "react-hook-form";
 import type z from "zod/v3";
 import type { signupSchema } from "../constants";
-import useSocialConnectionMock from "@/hooks/useSocialConnectMock";
 import { LoaderButton } from "@/components/loader-button";
 import KakaoLogo from "@/assets/logo-kakao.svg";
 import NaverLogo from "@/assets/logo-naver.png";
 import GoogleLogo from "@/assets/logo-google.png";
+import useAsyncTaskMock from "@/hooks/useAsyncTaskMock";
 
-function ThirdForm({
+function SocialForm({
   form,
 }: {
   form: UseFormReturn<z.infer<typeof signupSchema>>;
 }) {
-  const kakao = useSocialConnectionMock();
-  const naver = useSocialConnectionMock();
-  const google = useSocialConnectionMock();
+  const kakao = useAsyncTaskMock();
+  const naver = useAsyncTaskMock();
+  const google = useAsyncTaskMock();
 
   return (
     <div className="flex flex-col gap-4">
@@ -29,7 +29,7 @@ function ThirdForm({
                 isLoading={kakao.isLoading}
                 disabled={kakao.isLoading || kakao.status === "success"}
                 onClick={() =>
-                  kakao.socialMock(
+                  kakao.mock(
                     () => {
                       form.setValue("isKakaoConnected", true);
                     },
@@ -37,7 +37,6 @@ function ThirdForm({
                   )
                 }
                 className="w-full border"
-                type="button"
                 variant="secondary"
               >
                 <img width={30} height={30} src={KakaoLogo} alt="kakao" />
@@ -58,7 +57,7 @@ function ThirdForm({
                 isLoading={naver.isLoading}
                 disabled={naver.isLoading || naver.status === "success"}
                 onClick={() =>
-                  naver.socialMock(
+                  naver.mock(
                     () => {
                       form.setValue("isNaverConnected", true);
                     },
@@ -66,7 +65,6 @@ function ThirdForm({
                   )
                 }
                 className="w-full border"
-                type="button"
                 variant="secondary"
               >
                 <img width={30} height={30} src={NaverLogo} alt="naver" />
@@ -86,7 +84,7 @@ function ThirdForm({
                 isLoading={google.isLoading}
                 disabled={google.isLoading || google.status === "success"}
                 onClick={() =>
-                  google.socialMock(
+                  google.mock(
                     () => {
                       form.setValue("isGoogleConnected", true);
                     },
@@ -94,7 +92,6 @@ function ThirdForm({
                   )
                 }
                 className="w-full border"
-                type="button"
                 variant="secondary"
               >
                 <img width={30} height={30} src={GoogleLogo} alt="google" />
@@ -108,4 +105,4 @@ function ThirdForm({
   );
 }
 
-export default ThirdForm;
+export default SocialForm;

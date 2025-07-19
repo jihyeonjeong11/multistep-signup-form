@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 const STATIC_STEPS = ["계정정보", "개인정보", "소셜연결", "성공"];
 
 // todo: v1 animation
+// todo: advanced better animation
 function CardSidebar({
   goToIndex,
   currentStep,

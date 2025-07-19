@@ -10,7 +10,7 @@ import {
 import type z from "zod/v3";
 import type { signupSchema } from "../constants";
 
-function FirstForm({
+function AccountForm({
   form,
 }: {
   form: UseFormReturn<z.infer<typeof signupSchema>>;
@@ -113,4 +113,4 @@ function FirstForm({
   );
 }
 
-export default FirstForm;
+export default AccountForm;

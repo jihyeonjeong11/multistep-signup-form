@@ -4,6 +4,7 @@ function useSteps(initialSteps: number) {
   const [currentStep, setCurrentStep] = useState(0);
   const goToIndex = (index: number, completed?: boolean) => {
     if ((index === 2 || index === 3) && !completed) return;
+    if (currentStep === 3) return;
     setCurrentStep(index);
   };
 
