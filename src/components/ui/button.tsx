@@ -11,6 +11,7 @@ const buttonVariants = cva(
         default: "",
         primary: "bg-accent-green text-white hover:bg-accent-green/90",
         secondary: "hover:text-accent-green",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -39,6 +40,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        type="button"
         {...props}
       />
     );

@@ -2,9 +2,8 @@ import { useState } from "react";
 
 function useSteps(initialSteps: number) {
   const [currentStep, setCurrentStep] = useState(0);
-
-  const goToIndex = (index: number) => {
-    // 완료되었을 때만...
+  const goToIndex = (index: number, completed?: boolean) => {
+    if ((index === 2 || index === 3) && !completed) return;
     setCurrentStep(index);
   };
 

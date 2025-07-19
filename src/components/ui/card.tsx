@@ -5,10 +5,10 @@ const CardContainer = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div
+  <article
     ref={ref}
     className={cn(
-      "w-11/12 min-h-card-height max-w-4xl",
+      "w-11/12 min-h-card-height max-w-4xl text-xs",
       "md:flex md:border md:border-accent-green rounded-md",
       className
     )}
@@ -24,7 +24,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "bg-card w-full h-full",
+      "bg-card w-full min-h-card-height",
       "md:border-none border border-accent-green",
       className
     )}

@@ -79,6 +79,8 @@ export const SIGN_UP_FIELDS = {
   },
 };
 
+export const genderEnum = z.enum(["m", "f", ""]);
+
 export const INITIAL_FORM_DATA = {
   // Step 1
   id: "",
@@ -88,17 +90,21 @@ export const INITIAL_FORM_DATA = {
   phoneNumber: "",
 
   // Step 2
-  birthdate: "",
+  birthDate: undefined,
   gender: "",
   additionalInfo: "",
 
   // Step 3
-  snsType: "",
-  snsId: "",
+  isKakaoConnected: false,
+  isNaverConnected: false,
+  isGoogleConnected: false,
+  // snsType: "",
+  // snsId: "",
 };
 
-export const step1Schema = z
+export const signupSchema = z
   .object({
+    // --- Step 1: 계정 정보 (FirstForm) ---
     id: z
       .string()
       .min(4, "아이디는 최소 4자 이상이어야 합니다.")
@@ -133,38 +139,31 @@ export const step1Schema = z
       .max(11, "전화번호는 최대 11자리를 넘을 수 없습니다.")
       .regex(/^\d+$/, "전화번호는 숫자만 입력해 주세요. (하이픈 제외)")
       .nonempty("전화번호를 입력해 주세요."),
+
+    // --- Step 2: 개인 정보 (SecondForm) ---
+    birthDate: z
+      .date({
+        required_error: "생년월일을 입력해주세요.",
+        invalid_type_error: "유효하지 않은 날짜 형식입니다.",
+      })
+      .refine((date) => {
+        if (isNaN(date.getTime())) {
+          return false;
+        }
+
+        return date <= new Date();
+      }, "유효하지 않거나 미래의 생년월일입니다."),
+
+    gender: z.string().refine((val) => val !== "", {
+      // z.enum 말고 다른 타입 찾을 것.
+      message: "성별을 선택해주세요.",
+    }),
+    // --- Step 3: 소셜 연결 (ThirdForm) ---
+    isKakaoConnected: z.boolean().optional(),
+    isNaverConnected: z.boolean().optional(),
+    isGoogleConnected: z.boolean().optional(),
   })
   .refine((data) => data.password === data.passwordConfirm, {
     message: "비밀번호가 일치하지 않습니다.",
     path: ["passwordConfirm"],
   });
-
-export const step2Schema = z.object({
-  birthDate: z
-    .string()
-    .nonempty("생년월일을 입력해주세요.")
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "생년월일은 YYYY-MM-DD 형식이어야 합니다.")
-    .refine((dateString) => {
-      const [year, month, day] = dateString.split("-").map(Number);
-      const date = new Date(year, month - 1, day);
-      return (
-        date.getFullYear() === year &&
-        date.getMonth() === month - 1 &&
-        date.getDate() === day &&
-        date <= new Date()
-      );
-    }, "유효하지 않거나 미래의 생년월일입니다."),
-  gender: z.enum(["m", "f", ""], {
-    message: "성별을 선택해주세요.",
-  }),
-
-  // 자유 value
-});
-
-export type Step2FormData = z.infer<typeof step2Schema>;
-
-export const step3Schema = z.object({
-  socialConnectAgreement: z.boolean().default(false),
-});
-
-export type Step3FormData = z.infer<typeof step3Schema>;

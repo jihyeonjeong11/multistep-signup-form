@@ -120,7 +120,6 @@ function App() {
         <button onClick={goBack}>go Back</button>
         <button onClick={goNext}>go Next</button>
       </div> */}
-      <Signup />
       {process.env.NODE_ENV === "development" && (
         <Button
           onClick={devSwitcher}
@@ -130,6 +129,7 @@ function App() {
           Dev:Check showcases
         </Button>
       )}
+      <Signup />
     </div>
   );
 }

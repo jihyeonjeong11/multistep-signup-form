@@ -1,5 +1,4 @@
 import { Button } from "../components/ui/button";
-import Step1Sandbox from "./Step1Form";
 import FormCard from "./FormCard";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -17,9 +16,7 @@ function Showcase({ devSwitcher }: { devSwitcher: () => void }) {
       </section>
       <section className="p-2">
         <h1 className="text-3xl">Forms</h1>
-        <div className="pt-4 flex gap-4">
-          <Step1Sandbox />
-        </div>
+        <div className="pt-4 flex gap-4">{/* <Step1Sandbox /> */}</div>
       </section>
       <section className="p-2">
         <h1 className="text-3xl">Card</h1>

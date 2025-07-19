@@ -14,11 +14,9 @@ interface DatePickerWithCalendarProps {
 
 const DatePickerWithCalendar: React.FC<DatePickerWithCalendarProps> = ({
   selected,
-  value,
   onSelect,
   placeholder = "날짜를 선택하세요",
 }) => {
-  console.log("selected", value);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const popoverRef = React.useRef<HTMLDivElement>(null);
@@ -38,12 +36,13 @@ const DatePickerWithCalendar: React.FC<DatePickerWithCalendarProps> = ({
   }, []);
 
   const handleDaySelect = (date: Date | undefined) => {
+    console.log(date, typeof date);
     onSelect(date);
     setIsOpen(false);
   };
 
   return (
-    <div className="relative" ref={popoverRef}>
+    <div className="relative mt-1" ref={popoverRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -56,7 +55,7 @@ const DatePickerWithCalendar: React.FC<DatePickerWithCalendarProps> = ({
         aria-haspopup="dialog"
       >
         {selected ? (
-          format(value, "PPP", { locale: ko })
+          format(selected, "PPP", { locale: ko })
         ) : (
           <span>{placeholder}</span>
         )}
@@ -72,7 +71,7 @@ const DatePickerWithCalendar: React.FC<DatePickerWithCalendarProps> = ({
             disabled={(date) =>
               date > new Date() || date < new Date("1900-01-01")
             }
-            captionLayout="dropdown-months"
+            captionLayout="dropdown"
             locale={ko}
             classNames={{
               caption_dropdowns: "flex justify-center gap-1",
