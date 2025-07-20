@@ -18,8 +18,9 @@ import CardSidebar from "../ui/CardSidebar";
 import useAsyncTaskMock from "@/hooks/useAsyncTaskMock";
 import { LoaderButton } from "../loader-button";
 import AccountForm from "./forms/accountForm";
-import PrivateForm from "./forms/PrivateForm";
-import SocialForm from "./forms/SocialForm";
+import PrivateForm from "./forms/privateForm";
+import SocialForm from "./forms/socialForm";
+import { toast } from "sonner";
 
 const step1Conditions = [
   "id",
@@ -48,12 +49,15 @@ function Signup() {
   } = form;
 
   function onSubmit(values: z.infer<typeof signupSchema>) {
+    // submit
+    console.table(values);
     mock(
       () => {
-        console.log("passing values", values);
         goNext();
       },
-      () => null // 토스터
+      () => {
+        toast("가입에 실패했습니다. 인터넷 연결을 확인해주세요.");
+      }
     );
   }
 
@@ -65,6 +69,7 @@ function Signup() {
       if (isValid) {
         goNext();
       } else {
+        toast("계정 정보를 완료해주세요");
         console.error(errors);
       }
     } else if (currentStep === 1) {
@@ -72,10 +77,10 @@ function Signup() {
       if (isValid) {
         goNext();
       } else {
+        toast("개인 정보를 완료해주세요");
         console.error(errors);
       }
     } else if (currentStep === 2) {
-      console.log("123123");
       handleSubmit(onSubmit)();
     }
   };
@@ -131,7 +136,7 @@ function Signup() {
                   )}
                   {currentStep === 2 ? (
                     <LoaderButton
-                      disabled={!isValid}
+                      disabled={!isValid || isLoading}
                       isLoading={isLoading}
                       variant="primary"
                       onClick={handleNextStep}

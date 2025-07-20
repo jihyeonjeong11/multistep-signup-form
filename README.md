@@ -13,7 +13,7 @@
 - Form management: [React Hook Form](https://react-hook-form.com/)
 - Form validation: [Zod](https://zod.dev/) - Zod v3, not v4 [source](https://dev.to/dzakh/zod-v4-17x-slower-and-why-you-should-care-1m1)
 - Web animation: [Motion](https://www.framer.com/motion/)
-- Date picker: [react-day-picker](https://daypicker.dev/)
+- Date picker: [react-day-picker](https://daypicker.dev/) - shaDcn 기반.
 
 ## installation
 

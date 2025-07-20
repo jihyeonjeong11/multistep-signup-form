@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "./components/ui/button";
 import Showcase from "./_sandbox/Showcase";
 import Signup from "./components/Signup";
+import { Toaster } from "sonner";
 
 function App() {
   const [showDevShowcase, setShowDebShowcase] = useState(false);
@@ -26,6 +27,7 @@ function App() {
           Dev:Check showcases
         </Button>
       )}
+      <Toaster />
     </div>
   );
 }

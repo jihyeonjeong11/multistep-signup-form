@@ -1,1 +1,1 @@
-type SocialConnectionStatus = "idle" | "success" | "failure";
+export type SocialConnectionStatus = "idle" | "success" | "failure";

@@ -1,10 +1,65 @@
 import React from "react";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
-import { DayPicker } from "react-day-picker";
+import { DayPicker, type ClassNames } from "react-day-picker";
 
 import { CalendarIcon } from "lucide-react"; // 캘린더 아이콘 (옵션)
 import { cn } from "@/lib/utils";
+
+const DAYPICKER_CLASSES: Partial<ClassNames> = {
+  root: "",
+  chevron: "hidden",
+  nav: "",
+  button_next: "",
+  button_previous: "",
+
+  month: "space-y-4",
+  months: "",
+  month_grid: "",
+  week: "",
+  weeks: "",
+  weekday: "",
+  weekdays: "",
+  week_number: "",
+  week_number_header: "",
+
+  day: cn(
+    "h-9 w-9 p-0 font-normal aria-selected:opacity-100",
+    "rounded-md hover:bg-accent hover:text-accent-foreground"
+  ),
+  day_button: "w-full h-full",
+
+  caption_label: "hidden",
+  month_caption: "text-accent-green",
+  dropdowns: "flex gap-2",
+  dropdown: "bg-background rounded-md px-2 py-1 border",
+  dropdown_root: "",
+  months_dropdown: "",
+
+  years_dropdown: "",
+
+  disabled: "",
+  hidden: "",
+  outside: "",
+  focused: "",
+  today: "",
+  selected: "",
+
+  range_end: "",
+  range_middle: "",
+  range_start: "",
+
+  weeks_before_enter: "",
+  weeks_before_exit: "",
+  weeks_after_enter: "",
+  weeks_after_exit: "",
+  caption_before_enter: "",
+  caption_before_exit: "",
+  caption_after_enter: "",
+  caption_after_exit: "",
+
+  footer: "",
+};
 
 interface DatePickerWithCalendarProps {
   selected?: Date;
@@ -73,29 +128,7 @@ const DatePickerWithCalendar: React.FC<DatePickerWithCalendarProps> = ({
             captionLayout="dropdown"
             locale={ko}
             classNames={{
-              caption_dropdowns: "flex justify-center gap-1",
-              caption_label: "hidden",
-              vhidden: "hidden",
-              month: "space-y-4",
-              head_row: "flex",
-              head_cell:
-                "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
-              row: "flex w-full mt-2",
-              cell: "h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent/50 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-              day: cn(
-                "h-9 w-9 p-0 font-normal aria-selected:opacity-100",
-                "rounded-md hover:bg-accent hover:text-accent-foreground",
-                "day-selected:bg-primary day-selected:text-primary-foreground",
-                "day-today:bg-accent day-today:text-accent-foreground",
-                "day-outside:text-muted-foreground day-outside:opacity-50",
-                "day-disabled:text-muted-foreground day-disabled:opacity-50"
-              ),
-              day_selected:
-                "bg-accent-green text-white hover:bg-accent-green hover:text-white focus:bg-accent-green focus:text-white",
-              day_today:
-                "font-bold border border-accent-green text-accent-green",
-              dropdown: "bg-background rounded-md px-2 py-1 border",
-              dropdown_icon: "ml-1",
+              ...DAYPICKER_CLASSES,
             }}
           />
         </div>
