@@ -21,6 +21,7 @@ import AccountForm from "./forms/accountForm";
 import PrivateForm from "./forms/privateForm";
 import SocialForm from "./forms/socialForm";
 import { toast } from "sonner";
+import LottieComp from "../Lottie";
 
 const step1Conditions = [
   "id",
@@ -86,6 +87,23 @@ function Signup() {
   };
 
   // 폼 관리 블록
+
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <CardContainer className="items-stretch">
+        <CardSidebar goToIndex={goToIndex} currentStep={currentStep} />
+        <Card className="justify-between flex flex-col items-stretch p-4">
+          <MotionDiv
+            key={currentStep}
+            className="py-4 w-full h-full justify-center items-center flex flex-col gap-2"
+          >
+            <LottieComp />
+            <CardTitle>회원가입이 끝났습니다!</CardTitle>
+          </MotionDiv>
+        </Card>
+      </CardContainer>
+    </div>
+  );
 
   return (
     <Form {...form}>
