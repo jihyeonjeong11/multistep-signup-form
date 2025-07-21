@@ -1,6 +1,6 @@
 # Multistep-signup-react
 
-리액트로 작업한 단계별 회원가입 컴포넌트입니다. 컴포넌트별로 구분 된 클린한 코드 구조와 통일성 및 빠른 디자인 시스템 개발에 중점을 두었습니다.
+리액트로 작업한 단계별 회원가입 컴포넌트입니다. 컴포넌트별로 구분 된 클린한 코드 구조와 통일성 및 빠른 디자인 시스템 개발, 빠른 개발자 경험에 중점을 두었습니다.
 
 ## Dependencies
 
@@ -13,30 +13,25 @@
 - shadCN: Radix가 적용된 템플릿을 import 해 빠른 프로토타이핑에 용이.
 - Tailwind CSS: 빠르고 효율적인 스타일링 및 번들 최적화.
 
-### Form management:
-
-- [React Hook Form](https://react-hook-form.com/)
-- [Zod](https://zod.dev/) - Zod v3, not v4 [source](https://dev.to/dzakh/zod-v4-17x-slower-and-why-you-should-care-1m1)
-- Modern한 폼을 다루는 라이브러리 중 가장 active한 라이브러리로 선정. Validator와 함께 타입에 최대한 맞춘 개발을 할 수 있음.
-
-선택 이유: 현대 웹 애플리케이션에서 복잡한 폼을 효율적으로 관리하고 안정성을 확보하는 것은 필수적입니다. React Hook Form은 비제어 컴포넌트(Uncontrolled Components) 방식을 채택하여 불필요한 리렌더링을 최소화하고 폼 성능을 최적화하는 데 강점이 있습니다. 이는 다단계 폼과 같이 여러 필드를 관리하는 상황에서 사용자 경험에 긍정적인 영향을 미칩니다.
-
-Zod는 TypeScript 기반의 스키마 유효성 검사 라이브러리로, 런타임과 개발 단계 모두에서 강력한 타입 안전성을 제공합니다. React Hook Form과 Zod를 함께 사용함으로써, 가장 활발하게 개발되고 커뮤니티 지원이 좋은 라이브러리 조합을 통해 유효성 검사를 포함한 폼 로직을 최대한 타입에 맞춰 견고하고 유지보수하기 쉽게 구현할 수 있었습니다. 특히, Zod v3을 사용한 것은 벤치마크 기반의 성능 최적화를 고려한 선택입니다.
-
-### Web animation:
-
-- [Motion](https://www.framer.com/motion/)
-- 복잡한 웹 애니메이션을 다룰 수 있는 가장 active한 라이브러리이므로 사용.
-
 ### Date picker:
 
 - [react-day-picker](https://daypicker.dev/)
 - shadcn 기반의 Date-picker 템플릿을 이용하기 위해 사용.
 
-### Vector animation
+### Form management:
+
+- [React Hook Form](https://react-hook-form.com/)
+- [Zod](https://zod.dev/) - Zod v3, not v4 [source](https://dev.to/dzakh/zod-v4-17x-slower-and-why-you-should-care-1m1)
+- React-hook-form: 복잡한 형태의 Form의 퍼포먼스(rerender)에 있어 가장 완벽한 기능성을 제공함. Resolver를 통한 Validator도입이 용이함.
+- Zod: 가장 쾌적한 Typescript와의 연결성을 제공함.
+
+### Animations:
+
+- [Motion](https://www.framer.com/motion/)
+- React에 가장 친화적이고 가장 active한 커뮤니티를 가지고 있으므로 사용.
 
 - [lottie-web](https://www.npmjs.com/package/lottie-web)
-- 웹 애니메이션으로 구현하기 힘든 이미지 자체의 애니메이션을 위해 사용.
+- 모션 그래픽 애니메이션을 사용하기 위해 사용. 많은 예시들을 무료나 혹은 유료로 사용할 수 있고, 디자이너가 직접 개발하고 사용하는 것도 가능함.
 
 ## installation
 
