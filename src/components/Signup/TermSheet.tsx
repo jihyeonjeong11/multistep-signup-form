@@ -27,7 +27,7 @@ function TermSheet({
           <SheetDescription>약관 헤더</SheetDescription>
         </SheetHeader>
 
-        <ScrollArea className="h-[95%] pr-8 pt-4 pb-20">
+        <ScrollArea className="h-[95%] pt-4 pb-20 flex justify-center p-4">
           <div className="max-w-4xl mx-auto p-6 md:p-8 bg-white shadow-lg rounded-lg border border-gray-200">
             <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
               회원가입 및 서비스 이용 약관
