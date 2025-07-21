@@ -5,12 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import CardSidebar from "@/components/ui/CardSidebar";
 
 function FormCard() {
   return (
     <CardContainer>
-      <CardSidebar goToIndex={() => null} />
       <Card>
         <CardHeader>
           <CardTitle>개인 정보</CardTitle>

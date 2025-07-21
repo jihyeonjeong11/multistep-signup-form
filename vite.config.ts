@@ -15,4 +15,5 @@ export default defineConfig({
       "@": root, // Map @ to ./src
     },
   },
+  base: "/multistep-signup-form",
 });

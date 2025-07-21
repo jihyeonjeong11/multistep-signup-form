@@ -3,7 +3,7 @@
   "description": "Multistep signup form",
   "author": "JIHYEON JEONG",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "tree:powershell": "treee -l 3 --ignore node_modules"
+    "tree:powershell": "treee -l 3 --ignore node_modules",
+    "predeploy": "vite build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -56,5 +58,8 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4"
+  },
+  "overrides": {
+    "rollup": "4.44.0"
   }
 }

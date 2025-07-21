@@ -13,7 +13,7 @@ import { INITIAL_FORM_DATA, signupSchema } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type z from "zod/v3";
 import { Form } from "../ui/form";
-import CardSidebar from "../ui/CardSidebar";
+import CardSidebar from "../ui/cardSidebar";
 import useAsyncTaskMock from "@/components/Signup/hooks/useAsyncTaskMock";
 import { LoaderButton } from "../loader-button";
 import AccountForm from "./forms/accountForm";

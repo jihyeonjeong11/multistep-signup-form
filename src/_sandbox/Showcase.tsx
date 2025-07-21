@@ -1,7 +1,5 @@
 import { Button } from "../components/ui/button";
 import FormCard from "./FormCard";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 // 미니멀한 스토리북 컴포넌트 쇼케케이스
 function Showcase({ devSwitcher }: { devSwitcher: () => void }) {
@@ -26,12 +24,7 @@ function Showcase({ devSwitcher }: { devSwitcher: () => void }) {
       </section>
       <section className="p-2">
         <h1 className="text-3xl">Date-picker</h1>
-        <div className="pt-4 flex gap-4">
-          <DatePicker
-            closeOnScroll={(e) => e.target === document}
-            selected={new Date()}
-          />
-        </div>
+        <div className="pt-4 flex gap-4"></div>
       </section>
       {process.env.NODE_ENV === "development" && (
         <Button
