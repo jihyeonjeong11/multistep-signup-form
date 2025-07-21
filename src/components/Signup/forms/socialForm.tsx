@@ -6,7 +6,8 @@ import { LoaderButton } from "@/components/loader-button";
 import KakaoLogo from "@/assets/logo-kakao.svg";
 import NaverLogo from "@/assets/logo-naver.png";
 import GoogleLogo from "@/assets/logo-google.png";
-import useAsyncTaskMock from "@/hooks/useAsyncTaskMock";
+import useAsyncTaskMock from "@/components/Signup/hooks/useAsyncTaskMock";
+import { toast } from "sonner";
 
 function SocialForm({
   form,
@@ -33,7 +34,9 @@ function SocialForm({
                     () => {
                       form.setValue("isKakaoConnected", true);
                     },
-                    () => null
+                    () => {
+                      toast("연결을 실패했습니다.");
+                    }
                   )
                 }
                 className="w-full border"
@@ -61,7 +64,9 @@ function SocialForm({
                     () => {
                       form.setValue("isNaverConnected", true);
                     },
-                    () => null
+                    () => {
+                      toast("연결을 실패했습니다.");
+                    }
                   )
                 }
                 className="w-full border"
@@ -88,7 +93,9 @@ function SocialForm({
                     () => {
                       form.setValue("isGoogleConnected", true);
                     },
-                    () => null
+                    () => {
+                      toast("연결을 실패했습니다.");
+                    }
                   )
                 }
                 className="w-full border"

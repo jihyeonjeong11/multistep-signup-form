@@ -83,3 +83,8 @@ export const signupSchema = z
     message: "비밀번호가 일치하지 않습니다.",
     path: ["passwordConfirm"],
   });
+
+export type Step1FormData = Pick<
+  typeof INITIAL_FORM_DATA,
+  "id" | "password" | "passwordConfirm" | "email" | "phoneNumber"
+>;

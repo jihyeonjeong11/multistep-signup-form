@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/components/Signup/utils/utils";
 import { Button } from "./button";
 import { motion } from "framer-motion";
 
@@ -37,8 +37,7 @@ function CardSidebar({
                   {
                     "bg-accent-green text-white hover:bg-accent-green font-bold shadow-md":
                       isActive,
-                    "bg-transparent text-gray-700 hover:bg-amber-300":
-                      !isActive,
+                    "bg-transparent text-gray-700 hover:bg-gray-300": !isActive,
                   }
                 )}
                 variant="ghost"

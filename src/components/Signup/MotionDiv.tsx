@@ -1,4 +1,4 @@
-import { formVariants } from "@/lib/utils";
+import { formVariants } from "@/components/Signup/utils/utils";
 import { motion } from "framer-motion";
 
 function MotionDiv({

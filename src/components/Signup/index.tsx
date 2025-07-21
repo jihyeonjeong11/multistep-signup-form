@@ -7,7 +7,7 @@ import {
 
 import { AnimatePresence } from "framer-motion";
 import MotionDiv from "./MotionDiv";
-import useSteps from "@/hooks/useSteps";
+import useSteps from "@/components/Signup/hooks/useSteps";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
 import { INITIAL_FORM_DATA, signupSchema } from "./constants";
@@ -15,7 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type z from "zod/v3";
 import { Form } from "../ui/form";
 import CardSidebar from "../ui/CardSidebar";
-import useAsyncTaskMock from "@/hooks/useAsyncTaskMock";
+import useAsyncTaskMock from "@/components/Signup/hooks/useAsyncTaskMock";
 import { LoaderButton } from "../loader-button";
 import AccountForm from "./forms/accountForm";
 import PrivateForm from "./forms/privateForm";
@@ -82,32 +82,13 @@ function Signup() {
         console.error(errors);
       }
     } else if (currentStep === 2) {
-      handleSubmit(onSubmit)();
+      return;
     }
   };
 
-  // 폼 관리 블록
-
-  return (
-    <div className="flex items-center justify-center h-screen">
-      <CardContainer className="items-stretch">
-        <CardSidebar goToIndex={goToIndex} currentStep={currentStep} />
-        <Card className="justify-between flex flex-col items-stretch p-4">
-          <MotionDiv
-            key={currentStep}
-            className="py-4 w-full h-full justify-center items-center flex flex-col gap-2"
-          >
-            <LottieComp />
-            <CardTitle>회원가입이 끝났습니다!</CardTitle>
-          </MotionDiv>
-        </Card>
-      </CardContainer>
-    </div>
-  );
-
   return (
     <Form {...form}>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center justify-center h-screen">
           <CardContainer className="items-stretch">
             <CardSidebar goToIndex={goToIndex} currentStep={currentStep} />
@@ -141,8 +122,11 @@ function Signup() {
                   </MotionDiv>
                 )}
                 {currentStep === 3 && (
-                  <MotionDiv key={currentStep} className="py-4">
-                    <CardTitle>성공</CardTitle>
+                  <MotionDiv
+                    key={currentStep}
+                    className="w-full h-full justify-center items-center flex flex-col"
+                  >
+                    <LottieComp />
                     <CardDescription>성공했습니다</CardDescription>
                   </MotionDiv>
                 )}
@@ -157,7 +141,7 @@ function Signup() {
                       disabled={!isValid || isLoading}
                       isLoading={isLoading}
                       variant="primary"
-                      onClick={handleNextStep}
+                      type="submit"
                     >
                       등록하기
                     </LoaderButton>

@@ -4,7 +4,7 @@ import { ko } from "date-fns/locale";
 import { DayPicker, type ClassNames } from "react-day-picker";
 
 import { CalendarIcon } from "lucide-react"; // 캘린더 아이콘 (옵션)
-import { cn } from "@/lib/utils";
+import { cn } from "@/components/Signup/utils/utils";
 
 const DAYPICKER_CLASSES: Partial<ClassNames> = {
   root: "",

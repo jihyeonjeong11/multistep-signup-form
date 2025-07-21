@@ -1,4 +1,4 @@
-import type { SocialConnectionStatus } from "@/types/types";
+import type { SocialConnectionStatus } from "@/components/types/types";
 import { useCallback, useState } from "react";
 
 function useAsyncTaskMock() {
