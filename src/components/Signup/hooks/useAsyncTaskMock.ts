@@ -16,7 +16,7 @@ function useAsyncTaskMock() {
         const delay = Math.floor(Math.random() * 1000) + 1000;
         await new Promise((resolve) => setTimeout(resolve, delay));
 
-        const success = noError ? 1 : Math.random() > 0.5;
+        const success = noError ? 1 : Math.random() > 0.2;
 
         if (success) {
           setStatus("success");
