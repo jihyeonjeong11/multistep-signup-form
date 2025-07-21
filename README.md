@@ -33,7 +33,7 @@
 - [lottie-web](https://www.npmjs.com/package/lottie-web)
 - 모션 그래픽 애니메이션을 사용하기 위해 사용. 많은 벡터 애니메이션을 무료 혹은 유료로 다운받거나 직접 제작해서 사용 가능.
 
-## installation
+## Installation
 
 - required node.js ver: ^20.0.0
 
@@ -43,3 +43,7 @@ cd multistep-signup-form
 npm i
 npm run dev
 ```
+
+## Active demo
+
+[github page](https://jihyeonjeong11.github.io/multistep-signup-form/)

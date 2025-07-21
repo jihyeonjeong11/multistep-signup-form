@@ -47,6 +47,8 @@ function Signup() {
     handleSubmit,
     trigger,
     formState: { errors, isValid },
+    getValues,
+    setError,
   } = form;
 
   function onSubmit(values: z.infer<typeof signupSchema>) {
@@ -68,7 +70,17 @@ function Signup() {
     if (currentStep === 0) {
       isValid = await trigger(step1Conditions);
       if (isValid) {
-        goNext();
+        const password = getValues("password");
+        const passwordConfirm = getValues("passwordConfirm");
+
+        if (password !== passwordConfirm) {
+          // patch: schema를 쪼개서 단계별로 구현해야만 함. 임시 해결책
+          setError("passwordConfirm", {
+            message: "비밀번호가 일치하지 않습니다.",
+          });
+        } else {
+          goNext();
+        }
       } else {
         toast("계정 정보를 완료해주세요");
         console.error(errors);
