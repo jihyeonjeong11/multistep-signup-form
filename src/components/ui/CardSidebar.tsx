@@ -1,4 +1,4 @@
-import { cn } from "@/components/Signup/utils/utils";
+import { cn } from "@/utils/utils";
 import { Button } from "./button";
 import { motion } from "framer-motion";
 

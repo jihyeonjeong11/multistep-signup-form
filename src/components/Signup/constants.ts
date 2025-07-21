@@ -11,6 +11,7 @@ export const INITIAL_FORM_DATA = {
   // Step 2
   birthDate: undefined,
   gender: "",
+  isTermAgreed: false,
 
   // Step 3
   isKakaoConnected: false,
@@ -74,6 +75,9 @@ export const signupSchema = z
       // z.enum 말고 다른 타입 찾을 것.
       message: "성별을 선택해주세요.",
     }),
+
+    isTermAgreed: z.boolean().optional(),
+
     // --- Step 3: 소셜 연결 (ThirdForm) ---
     isKakaoConnected: z.boolean().optional(),
     isNaverConnected: z.boolean().optional(),

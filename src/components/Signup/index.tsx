@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/card";
 
 import { AnimatePresence } from "framer-motion";
-import MotionDiv from "./MotionDiv";
 import useSteps from "@/components/Signup/hooks/useSteps";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
@@ -22,6 +21,7 @@ import PrivateForm from "./forms/privateForm";
 import SocialForm from "./forms/socialForm";
 import { toast } from "sonner";
 import LottieComp from "../Lottie";
+import CardAnimationDiv from "./CardAnimationDiv";
 
 const step1Conditions = [
   "id",
@@ -95,40 +95,40 @@ function Signup() {
             <Card className="justify-between flex flex-col items-stretch p-4">
               <AnimatePresence mode="wait">
                 {currentStep === 0 && (
-                  <MotionDiv key={currentStep} className="py-4">
+                  <CardAnimationDiv key={currentStep} className="py-4">
                     <CardTitle>계정 정보</CardTitle>
                     <CardDescription className="py-2">
                       계정 필수 정보를 입력하세요
                     </CardDescription>
                     <AccountForm form={form} />
-                  </MotionDiv>
+                  </CardAnimationDiv>
                 )}
                 {currentStep === 1 && (
-                  <MotionDiv key={currentStep} className="py-4">
+                  <CardAnimationDiv key={currentStep} className="py-4">
                     <CardTitle>개인 정보</CardTitle>
                     <CardDescription className="py-2">
                       개인 정보를 입력하세요
                     </CardDescription>
                     <PrivateForm form={form} />
-                  </MotionDiv>
+                  </CardAnimationDiv>
                 )}
                 {currentStep === 2 && (
-                  <MotionDiv key={currentStep} className="py-4">
+                  <CardAnimationDiv key={currentStep} className="py-4">
                     <CardTitle>소셜</CardTitle>
                     <CardDescription className="py-2">
                       소셜 연동 여부를 확인해주세요
                     </CardDescription>
                     <SocialForm form={form} />
-                  </MotionDiv>
+                  </CardAnimationDiv>
                 )}
                 {currentStep === 3 && (
-                  <MotionDiv
+                  <CardAnimationDiv
                     key={currentStep}
                     className="w-full h-full justify-center items-center flex flex-col"
                   >
                     <LottieComp />
                     <CardDescription>성공했습니다</CardDescription>
-                  </MotionDiv>
+                  </CardAnimationDiv>
                 )}
               </AnimatePresence>
               {currentStep !== 3 && (

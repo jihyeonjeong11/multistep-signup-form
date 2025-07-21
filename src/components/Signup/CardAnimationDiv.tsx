@@ -1,7 +1,7 @@
-import { formVariants } from "@/components/Signup/utils/utils";
+import { formVariants } from "@/utils/utils";
 import { motion } from "framer-motion";
 
-function MotionDiv({
+function CardAnimationDiv({
   children,
   className,
 }: {
@@ -21,4 +21,4 @@ function MotionDiv({
   );
 }
 
-export default MotionDiv;
+export default CardAnimationDiv;

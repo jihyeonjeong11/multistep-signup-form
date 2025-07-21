@@ -11,12 +11,18 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import type { UseFormReturn } from "react-hook-form";
 import type z from "zod/v3";
 import type { signupSchema } from "../constants";
+import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import TermSheet from "../TermSheet";
 
 function PrivateForm({
   form,
 }: {
   form: UseFormReturn<z.infer<typeof signupSchema>>;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="flex flex-col gap-4">
       <FormField
@@ -68,6 +74,28 @@ function PrivateForm({
           </FormItem>
         )}
       />
+      <FormField
+        control={form.control}
+        name="isTermAgreed"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>약관</FormLabel>
+            <FormControl>
+              <div className="flex items-center mt-2">
+                <Switch
+                  defaultChecked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+                <Button onClick={() => setIsOpen((p) => !p)}>
+                  <p className="text-accent-green">약관에 동의해 주세요.</p>
+                </Button>
+              </div>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <TermSheet isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 }
