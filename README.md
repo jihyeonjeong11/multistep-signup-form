@@ -2,6 +2,12 @@
 
 리액트로 작업한 단계별 회원가입 컴포넌트입니다. 컴포넌트별로 구분 된 클린한 코드 구조와 통일성 및 빠른 디자인 시스템 개발, 빠른 개발자 경험에 중점을 두었습니다.
 
+## Features
+
+- 단계별 회원가입 진행 폼
+- 계정 정보, 개인 정보, 소셜 연결의 단계 제공
+- 하단 버튼 및 사이드바를 통한 내비게이션
+
 ## Dependencies
 
 ### Styling & Component UI:
@@ -29,7 +35,6 @@
 
 - [Motion](https://www.framer.com/motion/)
 - React에 가장 친화적이고 가장 active한 커뮤니티를 가지고 있으므로 사용.
-
 - [lottie-web](https://www.npmjs.com/package/lottie-web)
 - 모션 그래픽 애니메이션을 사용하기 위해 사용. 많은 벡터 애니메이션을 무료 혹은 유료로 다운받거나 직접 제작해서 사용 가능.
 

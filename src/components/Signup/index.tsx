@@ -74,7 +74,7 @@ function Signup() {
         const passwordConfirm = getValues("passwordConfirm");
 
         if (password !== passwordConfirm) {
-          // patch: schema를 쪼개서 단계별로 구현해야만 함. 임시 해결책
+          // todo: schema를 쪼개서 단계별로 구현해야만 함. 임시 해결책
           setError("passwordConfirm", {
             message: "비밀번호가 일치하지 않습니다.",
           });
